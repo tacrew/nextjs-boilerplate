@@ -1,0 +1,11 @@
+{
+  "editor.tabSize": 2,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "eslint.workingDirectories": [{ "mode": "auto" }],
+  "css.validate": false,
+  "git.ignoreLimitWarning": true
+}
