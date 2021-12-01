@@ -1,8 +1,9 @@
 import { useMutation } from 'react-query'
-import { getSession, signIn } from 'next-auth/react'
+import { getSession, getCsrfToken } from 'next-auth/react'
 
 import { MutationConfig } from '@/lib/react-query'
 import storage from '@/utils/storage'
+import { getUrlSearchParams } from '@/utils/urlSearchParams'
 
 export type SigninDTO = {
   email: string
@@ -10,9 +11,16 @@ export type SigninDTO = {
 }
 
 export const signinWithCredential = async (data: SigninDTO) => {
-  const result = await signIn<'credentials'>('signin', {
-    ...data,
-    redirect: false,
+  const csrfToken = await getCsrfToken()
+  const result = await fetch('/api/auth/callback/signin', {
+    method: 'post',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: getUrlSearchParams({
+      ...data,
+      csrfToken,
+      redirect: false,
+      json: true,
+    }),
   })
   if (result?.ok) return
   switch (result?.status) {
