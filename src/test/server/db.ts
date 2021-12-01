@@ -13,7 +13,9 @@ const models = {
     title: String,
     content: String,
     category: String,
+    userId: String,
     createdAt: Number,
+    updatedAt: Number,
   },
 }
 

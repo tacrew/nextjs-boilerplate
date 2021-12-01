@@ -1,4 +1,4 @@
 import { authHandlers } from './auth'
-// import { noteHandlers } from './note'
+import { noteHandlers } from './note'
 
-export const handlers = [...authHandlers]
+export const handlers = [...authHandlers, ...noteHandlers]

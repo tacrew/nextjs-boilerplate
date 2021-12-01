@@ -1,10 +1,11 @@
 import jwt from 'jsonwebtoken'
-import omit from 'lodash/omit'
 import { RestRequest, createResponseComposition, context } from 'msw'
 
 import { JWT_SECRET } from '@/config'
 
 import { db } from './db'
+
+type SessionUser = ReturnType<typeof db.user.create>
 
 const isTesting =
   process.env.NODE_ENV === 'test' || ((window as any).Cypress as any)
@@ -29,7 +30,12 @@ export const hash = (str: string) => {
   return String(hash >>> 0)
 }
 
-export const sanitizeUser = (user: any) => omit(user, ['password', 'iat'])
+export const sanitizeUser = (
+  user: SessionUser
+): Omit<SessionUser, 'password'> => {
+  const { password, ...sanitizedUser } = user
+  return sanitizedUser
+}
 
 /**
  * credential認証処理
@@ -52,10 +58,7 @@ export function authenticate({
   if (user?.password === hash(password)) {
     const sanitizedUser = sanitizeUser(user)
     const accessToken = jwt.sign(sanitizedUser, JWT_SECRET)
-    const sessionToken = jwt.sign(
-      { ...sanitizedUser, token: accessToken },
-      JWT_SECRET
-    )
+    const sessionToken = jwt.sign({ ...sanitizedUser, accessToken }, JWT_SECRET)
     return { sessionToken }
   }
 
@@ -69,7 +72,6 @@ export function authenticate({
 export const verifySessionToken = (sessionToken: string) => {
   try {
     const decodedToken = jwt.verify(sessionToken, JWT_SECRET) as { id: string }
-    console.log(decodedToken)
     return { decodedToken }
   } catch (err: any) {
     throw new Error(err)
@@ -77,11 +79,20 @@ export const verifySessionToken = (sessionToken: string) => {
 }
 
 /**
+ * Request headersからbearer tokenを抽出
+ */
+const extractBearerToken = (requestHeaders: RestRequest['headers']) => {
+  const authHeader = requestHeaders.get('authorization')
+  if (!authHeader || !authHeader.startsWith('Bearer ')) return null
+  return authHeader.substring(7, authHeader.length)
+}
+
+/**
  * access token検証処理
  */
 export function requireAuth(request: RestRequest) {
   try {
-    const encodedToken = request.headers.get('authorization')
+    const encodedToken = extractBearerToken(request.headers)
     if (!encodedToken) {
       throw new Error('No authorization token provided!')
     }
