@@ -5,7 +5,7 @@ import { useImmer } from 'use-immer'
 
 import { Button } from '@/components/element'
 import { Form, FormFieldText } from '@/components/form'
-import { useSignupWithCredential } from '@/hooks/auth'
+import { useSignupWithCredential } from '../../hooks'
 
 const schema = z.object({
   email: z.string().min(1, 'Required'),

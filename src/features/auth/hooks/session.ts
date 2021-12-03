@@ -5,7 +5,7 @@ import { axios } from '@/lib/axios'
 import { QueryConfig } from '@/lib/react-query'
 import storage from '@/utils/storage'
 
-import { Session } from './types'
+import { Session } from '../types'
 
 export const fetchSession = async (): Promise<Session | undefined> => {
   return axios.get('/api/auth/session')
