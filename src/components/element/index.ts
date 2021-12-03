@@ -1,3 +1,5 @@
 export * from './Table'
 export * from './Spinner'
 export * from './Link'
+export * from './Dialog'
+export * from './ConfirmationDialog'
