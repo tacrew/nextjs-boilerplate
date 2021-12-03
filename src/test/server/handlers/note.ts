@@ -1,5 +1,4 @@
 import { rest } from 'msw'
-import { nanoid } from 'nanoid'
 
 import { Note } from '@/features/note/types'
 
@@ -16,7 +15,13 @@ export const noteHandlers = [
   rest.get(`${API_URL}/notes`, (req, res, ctx) => {
     try {
       const user = requireAuth(req)
-      const result = db.note.findMany({})
+      const result = db.note.findMany({
+        where: {
+          userId: {
+            equals: user.id,
+          },
+        },
+      })
       return delayedResponse(ctx.json(result))
     } catch (error: any) {
       return delayedResponse(
@@ -50,7 +55,6 @@ export const noteHandlers = [
     try {
       const user = requireAuth(req)
       const result = db.note.create({
-        id: nanoid(),
         userId: user.id,
         createdAt: Date.now(),
         updatedAt: Date.now(),

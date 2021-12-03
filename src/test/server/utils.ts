@@ -7,8 +7,7 @@ import { db } from './db'
 
 type SessionUser = ReturnType<typeof db.user.create>
 
-const isTesting =
-  process.env.NODE_ENV === 'test' || ((window as any).Cypress as any)
+const isTesting = process.env.NODE_ENV === 'test'
 
 /**
  *  遅延付き応答
