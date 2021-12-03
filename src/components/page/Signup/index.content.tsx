@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 
-import { AuthSignupForm } from '@/components/model/auth/AuthSignupForm'
+import { AuthSignupForm } from '@/features/auth/components/AuthSignupForm'
 
 export const Signup = () => {
   const router = useRouter()

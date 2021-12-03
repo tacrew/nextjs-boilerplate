@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router'
 
-import { AuthSigninForm } from '@/components/model/auth/AuthSigninForm'
+import { AuthSigninForm } from '@/features/auth/components/AuthSigninForm'
 
-import { useSignout } from '@/hooks/auth'
+import { useSignout } from '@/features/auth/hooks'
 
 export const Signin = () => {
   const router = useRouter()
