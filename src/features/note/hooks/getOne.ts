@@ -5,7 +5,7 @@ import { QueryConfig } from '@/lib/react-query'
 
 import { Note } from '../types'
 
-export const getNote = ({ noteId }: { noteId: string }): Promise<Note[]> => {
+export const getNote = ({ noteId }: { noteId: string }): Promise<Note> => {
   return axios.get(`/notes/${noteId}`)
 }
 

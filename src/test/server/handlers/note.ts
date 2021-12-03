@@ -34,11 +34,14 @@ export const noteHandlers = [
   rest.get(`${API_URL}/notes/:noteId`, (req, res, ctx) => {
     try {
       const user = requireAuth(req)
-      const { discussionId } = req.params
+      const { noteId } = req.params
       const result = db.note.findFirst({
         where: {
           id: {
-            equals: discussionId,
+            equals: noteId,
+          },
+          userId: {
+            equals: user.id,
           },
         },
       })

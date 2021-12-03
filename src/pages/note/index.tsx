@@ -1,3 +1,3 @@
-import { NotePage } from '@/components/page/Note'
+import { NotesPage } from '@/components/page/Notes'
 
-export default NotePage
+export default NotesPage

@@ -38,7 +38,7 @@ export const NoteList = () => {
           title: '',
           field: 'id',
           Cell({ entry: { id } }) {
-            return <Link href={`./${id}`}>View</Link>
+            return <Link href={`/note/${id}`}>View</Link>
           },
         },
         {
