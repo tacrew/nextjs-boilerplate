@@ -1,17 +1,15 @@
 import Axios, { AxiosRequestConfig } from 'axios'
-import { getSession } from 'next-auth/react'
 
 import { API_URL } from '@/config'
 // import { useNotificationStore } from '@/stores/notifications'
 import storage from '@/utils/storage'
 
 const authRequestInterceptor = async (config: AxiosRequestConfig) => {
-  const session = await getSession()
-  storage.setToken(session?.accessToken as string)
+  const accessToken = storage.getToken()
   return {
     ...config,
     headers: {
-      authorization: `Bearer ${session?.accessToken}`,
+      authorization: `Bearer ${accessToken}`,
       Accept: 'application/json',
     },
   }

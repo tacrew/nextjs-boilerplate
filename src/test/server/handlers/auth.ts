@@ -1,5 +1,4 @@
 import { rest } from 'msw'
-import { nanoid } from 'nanoid'
 
 import { db, persistDb } from '../db'
 import {
@@ -41,7 +40,6 @@ export const authHandlers = [
 
       db.user.create({
         ...userInput,
-        id: nanoid(),
         createdAt: Date.now(),
         password: hash(userInput.password),
       })

@@ -13,7 +13,9 @@ const models = {
     title: String,
     content: String,
     category: String,
+    userId: String,
     createdAt: Number,
+    updatedAt: Number,
   },
 }
 
@@ -21,8 +23,12 @@ export const db = factory(models)
 
 export type Model = keyof typeof db
 
-export const loadDb = () =>
-  Object.assign(JSON.parse(window.localStorage.getItem('msw-db') || '{}'))
+export const loadDb = () => {
+  if (typeof window === 'undefined') return '{}'
+  return Object.assign(
+    JSON.parse(window.localStorage.getItem('msw-db') || '{}')
+  )
+}
 
 export const persistDb = (model: Model) => {
   if (process.env.NODE_ENV === 'test') return
@@ -44,6 +50,7 @@ export const initializeDb = () => {
 }
 
 export const resetDb = () => {
+  if (typeof window === 'undefined') return
   window.localStorage.clear()
 }
 
