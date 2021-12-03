@@ -28,7 +28,7 @@ export const Table = <Entry extends { id: string }>({
     <div className="flex flex-col">
       <div className="-my-2 overflow-x-auto">
         <div className="inline-block min-w-full py-2 align-middle">
-          <div className="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
+          <div className="overflow-hidden border-b border-gray-200 sm:rounded-lg">
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
@@ -36,7 +36,7 @@ export const Table = <Entry extends { id: string }>({
                     <th
                       key={column.title + index}
                       scope="col"
-                      className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
+                      className="px-6 py-3 text-xs font-bold tracking-wider text-left text-gray-500"
                     >
                       {column.title}
                     </th>
@@ -52,7 +52,7 @@ export const Table = <Entry extends { id: string }>({
                     {columns.map(({ Cell, field, title }, columnIndex) => (
                       <td
                         key={title + columnIndex}
-                        className="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap"
+                        className="px-6 py-4 text-sm text-gray-900 whitespace-nowrap"
                       >
                         {Cell ? <Cell entry={entry} /> : entry[field]}
                       </td>

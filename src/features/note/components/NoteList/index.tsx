@@ -4,7 +4,7 @@ import { formatDate } from '@/utils/date'
 import { useNotes } from '../../hooks'
 import { Note } from '../../types'
 
-// import { DeleteDiscussion } from './DeleteDiscussion'
+import { NoteDeleteButton } from '../NoteDeleteButton'
 
 export const NoteList = () => {
   const notesQuery = useNotes()
@@ -41,13 +41,17 @@ export const NoteList = () => {
             return <Link href={`./${id}`}>View</Link>
           },
         },
-        // {
-        //   title: '',
-        //   field: 'id',
-        //   Cell({ entry: { id } }) {
-        //     return <DeleteDiscussion id={id} />
-        //   },
-        // },
+        {
+          title: '',
+          field: 'id',
+          Cell({ entry: { id } }) {
+            return (
+              <div className="flex justify-end">
+                <NoteDeleteButton id={id} />
+              </div>
+            )
+          },
+        },
       ]}
     />
   )

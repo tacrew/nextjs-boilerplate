@@ -95,12 +95,12 @@ export const noteHandlers = [
 
   rest.delete(`${API_URL}/notes/:noteId`, (req, res, ctx) => {
     try {
-      const user = requireAuth(req)
-      const { discussionId } = req.params
+      requireAuth(req)
+      const { noteId } = req.params
       const result = db.note.delete({
         where: {
           id: {
-            equals: discussionId,
+            equals: noteId,
           },
         },
       })
