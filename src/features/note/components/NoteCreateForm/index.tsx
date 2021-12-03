@@ -2,8 +2,7 @@ import * as React from 'react'
 import * as z from 'zod'
 
 import { Button } from '@/components/element'
-import { Form } from '@/components/ui/Form'
-import { FormFieldText } from '@/components/ui/FormFieldText'
+import { Form, FormFieldText } from '@/components/form'
 
 import { useCreateNote, CreateNoteDTO } from '@/features/note/hooks'
 

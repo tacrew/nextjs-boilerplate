@@ -4,8 +4,7 @@ import * as z from 'zod'
 import { useImmer } from 'use-immer'
 
 import { Button } from '@/components/element'
-import { Form } from '@/components/ui/Form'
-import { FormFieldText } from '@/components/ui/FormFieldText'
+import { Form, FormFieldText } from '@/components/form'
 import { useSigninWithCredential } from '@/hooks/auth'
 
 const schema = z.object({

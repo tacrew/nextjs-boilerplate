@@ -5,7 +5,7 @@ import { UseFormRegisterReturn } from 'react-hook-form'
 import {
   FormFieldWrapper,
   FormFieldWrapperPassThroughProps,
-} from '@/components/ui/FormFieldWrapper'
+} from '@/components/form'
 
 type Option = {
   label: React.ReactNode
