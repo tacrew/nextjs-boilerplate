@@ -75,13 +75,16 @@ export const noteHandlers = [
 
   rest.patch<NoteUpdateBody>(`${API_URL}/notes/:noteId`, (req, res, ctx) => {
     try {
-      const user = requireAuth(req)
-      const data = req.body
-      const { discussionId } = req.params
+      requireAuth(req)
+      const data = {
+        ...req.body,
+        updatedAt: Date.now(),
+      }
+      const { noteId } = req.params
       const result = db.note.update({
         where: {
           id: {
-            equals: discussionId,
+            equals: noteId,
           },
         },
         data,

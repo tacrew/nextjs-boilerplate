@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
 
 import { NoteDetail } from '@/features/note/components/NoteDetail'
+import { UpdateDiscussion } from '@/features/note/components/NoteUpdateDrawer'
 
 export const Note = () => {
   const router = useRouter()
@@ -16,5 +17,10 @@ export const Note = () => {
     return null
   }
 
-  return <NoteDetail noteId={noteId} />
+  return (
+    <>
+      <NoteDetail noteId={noteId} />
+      <UpdateDiscussion noteId={noteId} />
+    </>
+  )
 }

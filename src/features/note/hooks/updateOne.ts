@@ -5,18 +5,16 @@ import { MutationConfig, queryClient } from '@/lib/react-query'
 
 import { Note } from '../types'
 
-export type UpdateDiscussionDTO = {
+export type UpdateNoteDTO = {
   data: {
     title: string
-    body: string
+    content: string
+    category: string
   }
   noteId: string
 }
 
-export const updateNote = ({
-  data,
-  noteId,
-}: UpdateDiscussionDTO): Promise<Note> => {
+export const updateNote = ({ data, noteId }: UpdateNoteDTO): Promise<Note> => {
   return axios.patch(`/notes/${noteId}`, data)
 }
 
@@ -50,7 +48,7 @@ export const useUpdateNote = ({ config }: UseUpdateNoteOptions = {}) => {
       }
     },
     onSuccess: (data: Note) => {
-      queryClient.refetchQueries(['discussion', data.id])
+      queryClient.refetchQueries(['note', data.id])
     },
     ...config,
     mutationFn: updateNote,
