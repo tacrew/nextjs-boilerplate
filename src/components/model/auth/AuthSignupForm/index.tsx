@@ -3,7 +3,7 @@ import Link from 'next/link'
 import * as z from 'zod'
 import { useImmer } from 'use-immer'
 
-import { Button } from '@/components/ui/Button'
+import { Button } from '@/components/element'
 import { Form } from '@/components/ui/Form'
 import { FormFieldText } from '@/components/ui/FormFieldText'
 import { useSignupWithCredential } from '@/hooks/auth'

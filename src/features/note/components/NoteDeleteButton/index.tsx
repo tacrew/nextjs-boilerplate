@@ -1,7 +1,6 @@
 import { TrashIcon } from '@heroicons/react/outline'
 
-import { ConfirmationDialog } from '@/components/element'
-import { Button } from '@/components/ui/Button'
+import { Button, ConfirmationDialog } from '@/components/element'
 
 import { Note } from '../../types'
 

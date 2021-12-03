@@ -1,7 +1,7 @@
 import * as React from 'react'
 import * as z from 'zod'
 
-import { Button } from '@/components/ui/Button'
+import { Button } from '@/components/element'
 import { Form } from '@/components/ui/Form'
 import { FormFieldText } from '@/components/ui/FormFieldText'
 

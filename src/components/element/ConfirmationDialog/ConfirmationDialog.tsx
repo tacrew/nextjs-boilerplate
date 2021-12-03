@@ -4,8 +4,7 @@ import {
 } from '@heroicons/react/outline'
 import * as React from 'react'
 
-import { Button } from '@/components/ui/Button'
-import { Dialog, DialogTitle } from '@/components/element/Dialog'
+import { Button, Dialog, DialogTitle } from '@/components/element'
 import { useDisclosure } from '@/hooks/useDisclosure'
 
 export type ConfirmationDialogProps = {
