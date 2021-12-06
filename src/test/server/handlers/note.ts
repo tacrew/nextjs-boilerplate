@@ -35,6 +35,9 @@ export const noteHandlers = [
     try {
       const user = requireAuth(req)
       const { noteId } = req.params
+      if (Array.isArray(noteId)) {
+        throw new Error(`noteId: ${noteId} is not permitted`)
+      }
       const result = db.note.findFirst({
         where: {
           id: {
@@ -81,6 +84,9 @@ export const noteHandlers = [
         updatedAt: Date.now(),
       }
       const { noteId } = req.params
+      if (Array.isArray(noteId)) {
+        throw new Error(`noteId: ${noteId} is not permitted`)
+      }
       const result = db.note.update({
         where: {
           id: {
@@ -103,6 +109,9 @@ export const noteHandlers = [
     try {
       requireAuth(req)
       const { noteId } = req.params
+      if (Array.isArray(noteId)) {
+        throw new Error(`noteId: ${noteId} is not permitted`)
+      }
       const result = db.note.delete({
         where: {
           id: {
