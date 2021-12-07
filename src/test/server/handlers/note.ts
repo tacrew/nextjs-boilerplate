@@ -6,6 +6,7 @@ import { API_URL } from '@/config'
 
 import { db, persistDb } from '../db'
 import { requireAuth, delayedResponse } from '../utils'
+import { noteFactory } from '../../dataFactory'
 
 type BaseKeys = 'title' | 'content' | 'category'
 type NoteCreateBody = Pick<Note, BaseKeys>
@@ -61,6 +62,7 @@ export const noteHandlers = [
     try {
       const user = requireAuth(req)
       const result = db.note.create({
+        ...noteFactory(),
         userId: user.id,
         createdAt: Date.now(),
         updatedAt: Date.now(),

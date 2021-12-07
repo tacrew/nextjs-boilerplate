@@ -22,14 +22,17 @@ export const Spinner = ({
   className = '',
 }: SpinnerProps) => {
   return (
-    <div className={clsx('flex justify-center', className)}>
-      <div
-        className={clsx(
-          'rounded-full animate-spin',
-          sizes[size],
-          variants[variant]
-        )}
-      ></div>
-    </div>
+    <>
+      <div className={clsx('flex justify-center', className)}>
+        <div
+          className={clsx(
+            'rounded-full animate-spin',
+            sizes[size],
+            variants[variant]
+          )}
+        ></div>
+      </div>
+      <span className="sr-only">Loading</span>
+    </>
   )
 }

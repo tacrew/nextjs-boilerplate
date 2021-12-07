@@ -1,7 +1,7 @@
-import { useMutation } from 'react-query'
+import { useMutation, useQueryClient } from 'react-query'
 
 import { axios } from '@/lib/axios'
-import { MutationConfig, queryClient } from '@/lib/react-query'
+import { MutationConfig } from '@/lib/react-query'
 
 import { Note } from '../types'
 
@@ -23,6 +23,7 @@ type UseUpdateNoteOptions = {
 }
 
 export const useUpdateNote = ({ config }: UseUpdateNoteOptions = {}) => {
+  const queryClient = useQueryClient()
   return useMutation({
     onMutate: async (updatingNote: any) => {
       await queryClient.cancelQueries(['note', updatingNote?.id])
@@ -36,7 +37,6 @@ export const useUpdateNote = ({ config }: UseUpdateNoteOptions = {}) => {
         ...previousNote,
         ...updatingNote,
       })
-
       return { previousNote }
     },
     onError: (_, __, context: any) => {

@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test:jest": "jest",
+    "test:jest": "jest --detectOpenHandles",
     "test:coverage": "CI=1 yarn test:jest --coverage",
     "precommit": "lint-staged"
   },
