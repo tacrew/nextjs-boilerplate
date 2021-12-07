@@ -1,7 +1,7 @@
-import { useMutation } from 'react-query'
+import { useMutation, useQueryClient } from 'react-query'
 
 import { axios } from '@/lib/axios'
-import { MutationConfig, queryClient } from '@/lib/react-query'
+import { MutationConfig } from '@/lib/react-query'
 
 import { Note } from '../types'
 
@@ -22,6 +22,7 @@ type UseCreateNoteOptions = {
 }
 
 export const useCreateNote = ({ config }: UseCreateNoteOptions) => {
+  const queryClient = useQueryClient()
   return useMutation({
     onMutate: async (newNote) => {
       await queryClient.cancelQueries(['notes'])
