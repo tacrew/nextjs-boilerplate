@@ -1,14 +1,5 @@
 import * as faker from 'faker'
-
-type Note = {
-  id: string
-  title: string
-  content: string
-  category: string
-  userId: string
-  createdAt: number
-  updatedAt: number
-}
+import { Note } from '@/features/note/types'
 
 export const noteFactory = (overrides?: Record<keyof Note, any>) => ({
   id: faker.datatype.uuid(),

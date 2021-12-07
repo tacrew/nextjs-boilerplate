@@ -4,4 +4,5 @@ export type Note = BaseEntity & {
   title: string
   content: string
   category: string
+  userId: string
 }
