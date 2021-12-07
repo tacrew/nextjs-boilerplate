@@ -21,7 +21,6 @@ const schema = z.object({
 export const UpdateDiscussion = ({ noteId }: UpdateDiscussionProps) => {
   const noteQuery = useNote({ noteId })
   const updateNoteMutation = useUpdateNote()
-
   return (
     <FormDrawer
       isDone={updateNoteMutation.isSuccess}
@@ -30,10 +29,10 @@ export const UpdateDiscussion = ({ noteId }: UpdateDiscussionProps) => {
           Update Note
         </Button>
       }
-      title="Update Discussion"
+      title="Update Note"
       submitButton={
         <Button
-          form="update-discussion"
+          form="update-note"
           type="submit"
           size="sm"
           isLoading={updateNoteMutation.isLoading}
@@ -43,7 +42,7 @@ export const UpdateDiscussion = ({ noteId }: UpdateDiscussionProps) => {
       }
     >
       <Form<UpdateNoteDTO['data'], typeof schema>
-        id="update-discussion"
+        id="update-note"
         onSubmit={async (values) => {
           await updateNoteMutation.mutateAsync({
             data: values,
