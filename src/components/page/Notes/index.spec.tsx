@@ -35,13 +35,13 @@ const renderWithNotes = async () => {
     fakeNote,
   }
 }
-test('正常系：noteを未登録の場合、表示するものがない故が表示される', async () => {
+test('正常系: noteを未登録の場合、表示するものがない故が表示される', async () => {
   await render(<NotesPage />)
 
   expect(await screen.findByText(/No Entries Found/i)).toBeInTheDocument()
 })
 
-test('正常系：noteが登録済みの場合、登録されているnoteが表示される', async () => {
+test('正常系: noteが登録済みの場合、登録されているnoteが表示される', async () => {
   const { fakeNote } = await renderWithNotes()
 
   const row = screen.getByRole('row', {
@@ -53,7 +53,7 @@ test('正常系：noteが登録済みの場合、登録されているnoteが表
   ).toBeInTheDocument()
 })
 
-test('正常系：ユーザーは削除ボタンを押すことにより、当該行のnoteを削除できる', async () => {
+test('正常系: ユーザーは削除ボタンを押すことにより、当該行のnoteを削除できる', async () => {
   const { fakeNote } = await renderWithNotes()
 
   // 初期値check

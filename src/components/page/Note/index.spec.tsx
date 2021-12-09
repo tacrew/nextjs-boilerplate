@@ -68,7 +68,7 @@ test('正常系：noteの作成者はnoteの内容を更新することができ
 
   userEvent.click(submitButton)
 
-  await waitFor(() => expect(drawer).not.toBeInTheDocument(), { timeout: 1500 })
+  await waitFor(() => expect(drawer).not.toBeInTheDocument())
 
   // 更新結果が表示に反映されているか
   const newTitle = `${fakeNote.title}${titleUpdate}`

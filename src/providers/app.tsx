@@ -10,7 +10,7 @@ type AppProviderProps = {
 export const AppProvider = ({ queryClient, children }: AppProviderProps) => {
   return (
     <QueryClientProvider client={queryClient}>
-      {process.env.NODE_ENV !== 'test' && <ReactQueryDevtools />}
+      {process.env.NEXT_IS_TEST !== 'true' && <ReactQueryDevtools />}
       {children}
     </QueryClientProvider>
   )
