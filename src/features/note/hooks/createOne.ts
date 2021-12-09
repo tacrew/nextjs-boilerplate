@@ -25,25 +25,6 @@ type UseCreateNoteOptions = {
 export const useCreateNote = ({ config }: UseCreateNoteOptions) => {
   const queryClient = useQueryClient()
   return useMutation({
-    onMutate: async (newNote) => {
-      await queryClient.cancelQueries(noteQueryKeys.lists())
-
-      const previousNotes = queryClient.getQueryData<Comment[]>(
-        noteQueryKeys.lists()
-      )
-
-      queryClient.setQueryData(noteQueryKeys.lists(), [
-        ...(previousNotes || []),
-        newNote.data,
-      ])
-
-      return { previousNotes }
-    },
-    onError: (_, __, context: any) => {
-      if (context?.previousNotes) {
-        queryClient.setQueryData(noteQueryKeys.lists(), context.previousNotes)
-      }
-    },
     onSuccess: () => {
       queryClient.invalidateQueries(noteQueryKeys.lists())
     },

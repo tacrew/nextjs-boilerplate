@@ -26,29 +26,8 @@ type UseUpdateNoteOptions = {
 export const useUpdateNote = ({ config }: UseUpdateNoteOptions = {}) => {
   const queryClient = useQueryClient()
   return useMutation({
-    onMutate: async (updatingNote: UpdateNoteDTO) => {
-      await queryClient.cancelQueries(noteQueryKeys.detail(updatingNote.noteId))
-
-      const previousNote = queryClient.getQueryData<Note>(
-        noteQueryKeys.detail(updatingNote.noteId)
-      )
-
-      queryClient.setQueryData(noteQueryKeys.detail(updatingNote.noteId), {
-        ...previousNote,
-        ...updatingNote,
-      })
-      return { previousNote }
-    },
-    onError: (_, __, context: any) => {
-      if (context?.previousNote) {
-        queryClient.setQueryData(
-          noteQueryKeys.detail(context.previousNote.id),
-          context.previousNote
-        )
-      }
-    },
-    onSuccess: (data: Note) => {
-      queryClient.refetchQueries(noteQueryKeys.detail(data.id))
+    onSuccess: () => {
+      queryClient.invalidateQueries(noteQueryKeys.details())
     },
     ...config,
     mutationFn: updateNote,
