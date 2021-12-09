@@ -4,6 +4,7 @@ import { axios } from '@/lib/axios'
 import { QueryConfig } from '@/lib/react-query'
 
 import { Note } from '../types'
+import { noteQueryKeys } from '../consts'
 
 export const getNotes = (): Promise<Note[]> => {
   return axios.get('/notes')
@@ -16,7 +17,7 @@ type UseNotesOptions = {
 export const useNotes = ({ config }: UseNotesOptions = {}) => {
   const queryConfig: QueryConfig<typeof getNotes> = {
     ...config,
-    queryKey: ['notes'],
+    queryKey: noteQueryKeys.lists(),
     queryFn: () => getNotes(),
   }
   return useQuery(queryConfig)

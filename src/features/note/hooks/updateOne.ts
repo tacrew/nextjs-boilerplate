@@ -4,6 +4,7 @@ import { axios } from '@/lib/axios'
 import { MutationConfig } from '@/lib/react-query'
 
 import { Note } from '../types'
+import { noteQueryKeys } from '../consts'
 
 export type UpdateNoteDTO = {
   data: {
@@ -25,15 +26,14 @@ type UseUpdateNoteOptions = {
 export const useUpdateNote = ({ config }: UseUpdateNoteOptions = {}) => {
   const queryClient = useQueryClient()
   return useMutation({
-    onMutate: async (updatingNote: any) => {
-      await queryClient.cancelQueries(['note', updatingNote?.id])
+    onMutate: async (updatingNote: UpdateNoteDTO) => {
+      await queryClient.cancelQueries(noteQueryKeys.detail(updatingNote.noteId))
 
-      const previousNote = queryClient.getQueryData<Note>([
-        'note',
-        updatingNote?.id,
-      ])
+      const previousNote = queryClient.getQueryData<Note>(
+        noteQueryKeys.detail(updatingNote.noteId)
+      )
 
-      queryClient.setQueryData(['note', updatingNote?.id], {
+      queryClient.setQueryData(noteQueryKeys.detail(updatingNote.noteId), {
         ...previousNote,
         ...updatingNote,
       })
@@ -42,13 +42,13 @@ export const useUpdateNote = ({ config }: UseUpdateNoteOptions = {}) => {
     onError: (_, __, context: any) => {
       if (context?.previousNote) {
         queryClient.setQueryData(
-          ['note', context.previousNote.id],
+          noteQueryKeys.detail(context.previousNote.id),
           context.previousNote
         )
       }
     },
     onSuccess: (data: Note) => {
-      queryClient.refetchQueries(['note', data.id])
+      queryClient.refetchQueries(noteQueryKeys.detail(data.id))
     },
     ...config,
     mutationFn: updateNote,
