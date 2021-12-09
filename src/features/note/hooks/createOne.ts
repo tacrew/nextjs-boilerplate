@@ -4,6 +4,7 @@ import { axios } from '@/lib/axios'
 import { MutationConfig } from '@/lib/react-query'
 
 import { Note } from '../types'
+import { noteQueryKeys } from '../consts'
 
 export type CreateNoteDTO = {
   data: {
@@ -24,25 +25,8 @@ type UseCreateNoteOptions = {
 export const useCreateNote = ({ config }: UseCreateNoteOptions) => {
   const queryClient = useQueryClient()
   return useMutation({
-    onMutate: async (newNote) => {
-      await queryClient.cancelQueries(['notes'])
-
-      const previousNotes = queryClient.getQueryData<Comment[]>(['notes'])
-
-      queryClient.setQueryData(
-        ['notes'],
-        [...(previousNotes || []), newNote.data]
-      )
-
-      return { previousNotes }
-    },
-    onError: (_, __, context: any) => {
-      if (context?.previousNotes) {
-        queryClient.setQueryData(['notes'], context.previousNotes)
-      }
-    },
     onSuccess: () => {
-      queryClient.invalidateQueries(['notes'])
+      queryClient.invalidateQueries(noteQueryKeys.lists())
     },
     ...config,
     mutationFn: createComment,

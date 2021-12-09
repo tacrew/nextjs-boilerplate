@@ -31,7 +31,7 @@ export const loadDb = () => {
 }
 
 export const persistDb = (model: Model) => {
-  if (process.env.NODE_ENV === 'test') return
+  if (process.env.NEXT_IS_TEST === 'true') return
   const data = loadDb()
   data[model] = db[model].getAll()
   window.localStorage.setItem('msw-db', JSON.stringify(data))

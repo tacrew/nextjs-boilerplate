@@ -7,7 +7,7 @@ import { db } from './db'
 
 type SessionUser = ReturnType<typeof db.user.create>
 
-const isTesting = process.env.NODE_ENV === 'test'
+const isTesting = process.env.NEXT_IS_TEST === 'true'
 
 /**
  *  遅延付き応答
