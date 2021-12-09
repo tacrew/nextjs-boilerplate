@@ -6,13 +6,13 @@ on:
       - develop
       - 'release/**'
 jobs:
-  build:
+  check:
     runs-on: ubuntu-latest
     steps:
       - uses: technote-space/auto-cancel-redundant-job@v1
       - uses: actions/checkout@v2
       - uses: volta-cli/action@v1
-      - name: Instal dependencies
+      - name: Install dependencies
         run: yarn install
       - name: Lint
         run: yarn lint
