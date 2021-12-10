@@ -18,7 +18,7 @@ export default meta
 
 const openButtonText = '開く'
 
-export const Info: ComponentStoryObj<typeof Dialog> = {
+export const Base: ComponentStoryObj<typeof Dialog> = {
   render: () => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const { close, open, isOpen } = useDisclosure()

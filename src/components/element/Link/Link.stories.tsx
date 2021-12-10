@@ -11,7 +11,7 @@ const meta: ComponentMeta<typeof Link> = {
 }
 export default meta
 
-export const Info: ComponentStoryObj<typeof Link> = {
+export const Base: ComponentStoryObj<typeof Link> = {
   args: {
     href: '/',
     children: 'link',

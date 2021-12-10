@@ -17,7 +17,7 @@ export default meta
 
 const openButtonText = '開く'
 
-export const Info: ComponentStoryObj<typeof Drawer> = {
+export const Base: ComponentStoryObj<typeof Drawer> = {
   args: {
     title: 'サンプル',
     size: 'md',

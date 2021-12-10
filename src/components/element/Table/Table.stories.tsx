@@ -38,7 +38,7 @@ const fakeUsers: User[] = [
 
 type UserTable = (props: TableProps<User>) => ReturnType<typeof Table>
 
-export const Info: ComponentStoryObj<UserTable> = {
+export const Base: ComponentStoryObj<UserTable> = {
   args: {
     data: fakeUsers,
     columns: [

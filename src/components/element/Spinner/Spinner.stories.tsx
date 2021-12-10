@@ -11,7 +11,7 @@ const meta: ComponentMeta<typeof Spinner> = {
 }
 export default meta
 
-export const Info: ComponentStoryObj<typeof Spinner> = {
+export const Base: ComponentStoryObj<typeof Spinner> = {
   args: {
     size: 'md',
     variant: 'primary',
