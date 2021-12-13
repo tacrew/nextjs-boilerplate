@@ -33,7 +33,7 @@
     "zod": "3.11.6"
   },
   "devDependencies": {
-    "@babel/core": "7.16.0",
+    "@babel/core": "7.16.5",
     "@mswjs/data": "0.8.3",
     "@storybook/addon-actions": "6.4.9",
     "@storybook/addon-essentials": "6.4.9",
