@@ -20,7 +20,7 @@ const UserNavigation = () => {
     { name: 'ユーザー情報', to: '/profile' },
     {
       name: 'ログアウト',
-      to: '',
+      to: '/signin',
       onClick: () => mutateAsync(undefined),
     },
   ].filter(Boolean) as UserNavigationItem[]
