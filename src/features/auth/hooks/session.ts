@@ -8,7 +8,7 @@ import storage from '@/utils/storage'
 import { Session } from '../types'
 
 export const fetchSession = async (): Promise<Session | undefined> => {
-  return axios.get('/api/auth/session')
+  return axios.get('/api/auth/session', { baseURL: '' })
 }
 
 type SignupUserOptions = {
@@ -39,5 +39,5 @@ export const useSession = ({
   }
 
   const query = useQuery(queryConfig)
-  return { session: query.data }
+  return { session: query.data, isLoading: query.isLoading }
 }
