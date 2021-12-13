@@ -8,6 +8,7 @@ import {
   verifySessionToken,
 } from '../utils'
 import { parseUrlSearchParams } from '@/utils/urlSearchParams'
+import { userFactory } from '../../dataFactory'
 
 type SignupCredential = {
   name: string
@@ -39,6 +40,7 @@ export const authHandlers = [
       }
 
       db.user.create({
+        ...userFactory(),
         ...userInput,
         createdAt: Date.now(),
         password: hash(userInput.password),
@@ -83,6 +85,19 @@ export const authHandlers = [
     } catch (error: any) {
       return delayedResponse(
         ctx.status(400),
+        ctx.json({ message: error?.message || 'Server Error' })
+      )
+    }
+  }),
+
+  rest.post<string>('/api/auth/signout', (req, res, ctx) => {
+    try {
+      return delayedResponse(
+        ctx.cookie(SESSION_TOKEN_KEY, '', { expires: new Date(-1) })
+      )
+    } catch (error: any) {
+      return delayedResponse(
+        ctx.status(401),
         ctx.json({ message: error?.message || 'Server Error' })
       )
     }
