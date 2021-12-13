@@ -59,6 +59,43 @@ test('正常系: noteが登録済みの場合、登録されているnoteが表�
   ).toBeInTheDocument()
 })
 
+test('正常系: ユーザーはnoteを作成できる', async () => {
+  await render(
+    withMockedRouter({ isReady: true, pathname: '/note' }, <NotesPage />)
+  )
+
+  // 初期値チェック
+  expect(await screen.findByText(/No Entries Found/i)).toBeInTheDocument()
+
+  // Noteの作成
+  const title = 'title'
+  const content = 'content'
+  const category = 'category'
+
+  userEvent.click(screen.getByRole('button', { name: /追加/ }))
+
+  const drawer = screen.getByRole('dialog', { name: /Note作成/ })
+
+  const titleField = within(drawer).getByText(/title/i)
+  const contentField = within(drawer).getByText(/content/i)
+  const categoryField = within(drawer).getByText(/category/i)
+
+  userEvent.type(titleField, title)
+  userEvent.type(contentField, content)
+  userEvent.type(categoryField, category)
+
+  const submitButton = within(drawer).getByRole('button', {
+    name: /作成/,
+  })
+
+  userEvent.click(submitButton)
+
+  await waitFor(() => expect(drawer).not.toBeInTheDocument())
+
+  // 作成結果が表示に反映されているか
+  await waitFor(() => expect(screen.getByText(title)).toBeInTheDocument())
+})
+
 test('正常系: ユーザーは削除ボタンを押すことにより、当該行のnoteを削除できる', async () => {
   const { fakeNote } = await renderWithNotes()
 
