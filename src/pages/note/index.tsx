@@ -1,3 +1,5 @@
 import { NotesPage } from '@/components/page/Notes'
 
-export default NotesPage
+import { withAuth } from '@/features/auth/hoc/withAuth'
+
+export default withAuth(NotesPage)
