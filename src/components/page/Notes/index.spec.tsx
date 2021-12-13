@@ -7,6 +7,7 @@ import {
   createUser,
   createNote,
 } from '@/test/utils'
+import { withMockedRouter } from '@/test/mock-next-router'
 import { formatDate } from '@/utils/date'
 
 import { NotesPage } from './index'
@@ -23,9 +24,12 @@ const renderWithNotes = async () => {
   const fakeUser = await createUser()
   const fakeNote = await createNote({ userId: fakeUser.id })
 
-  const utils = await render(<NotesPage />, {
-    user: fakeUser,
-  })
+  const utils = await render(
+    withMockedRouter({ isReady: true, pathname: '/note' }, <NotesPage />),
+    {
+      user: fakeUser,
+    }
+  )
 
   await screen.findByText(fakeNote.title)
 
@@ -36,7 +40,9 @@ const renderWithNotes = async () => {
   }
 }
 test('正常系: noteを未登録の場合、表示するものがない故が表示される', async () => {
-  await render(<NotesPage />)
+  await render(
+    withMockedRouter({ isReady: true, pathname: '/note' }, <NotesPage />)
+  )
 
   expect(await screen.findByText(/No Entries Found/i)).toBeInTheDocument()
 })
