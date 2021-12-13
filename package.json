@@ -16,7 +16,7 @@
   "dependencies": {
     "@headlessui/react": "1.4.2",
     "@heroicons/react": "1.0.5",
-    "@hookform/resolvers": "2.8.4",
+    "@hookform/resolvers": "2.8.5",
     "axios": "0.24.0",
     "clsx": "1.1.1",
     "dayjs": "1.10.7",
