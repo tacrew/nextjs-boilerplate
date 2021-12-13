@@ -2,12 +2,14 @@ import React from 'react'
 
 import { Notes } from './index.content'
 
-import { PageWithSidebar } from '@/components/layout/PageWithSidebar'
+import { PageWithSidebar, PageWithHeader } from '@/components/layout'
 
 export const NotesPage = () => {
   return (
     <PageWithSidebar>
-      <Notes />
+      <PageWithHeader>
+        <Notes />
+      </PageWithHeader>
     </PageWithSidebar>
   )
 }
