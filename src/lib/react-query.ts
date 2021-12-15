@@ -9,9 +9,16 @@ import { PromiseValue } from 'type-fest'
 
 const defaultQueryOptions: DefaultOptions = {
   queries: {
-    useErrorBoundary: true,
+    useErrorBoundary: (error: any) => {
+      return error.response?.status >= 500
+    },
     refetchOnWindowFocus: false,
     retry: false,
+  },
+  mutations: {
+    useErrorBoundary: (error: any) => {
+      return error.response?.status >= 500
+    },
   },
 }
 
