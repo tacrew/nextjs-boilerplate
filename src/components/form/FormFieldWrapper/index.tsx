@@ -6,7 +6,7 @@ type Props = {
   label?: string
   className?: string
   children: React.ReactNode
-  error?: FieldError | undefined
+  error?: FieldError[] | FieldError | undefined
 }
 
 export type FormFieldWrapperPassThroughProps = Omit<
@@ -16,6 +16,10 @@ export type FormFieldWrapperPassThroughProps = Omit<
 
 export const FormFieldWrapper = (props: Props) => {
   const { label, className, error, children } = props
+  const displayError = React.useMemo(
+    () => (Array.isArray(error) ? error[0] : error),
+    [error]
+  )
   return (
     <div>
       <label
@@ -24,13 +28,13 @@ export const FormFieldWrapper = (props: Props) => {
         {label}
         <div className="mt-1">{children}</div>
       </label>
-      {error?.message && (
+      {displayError?.message && (
         <div
           role="alert"
-          aria-label={error.message}
+          aria-label={displayError.message}
           className="text-sm font-semibold text-red-500"
         >
-          {error.message}
+          {displayError.message}
         </div>
       )}
     </div>
