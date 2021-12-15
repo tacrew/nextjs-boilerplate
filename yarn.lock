@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"@aspida/axios@^1.7.1":
+"@aspida/axios@1.7.1":
   version "1.7.1"
   resolved "https://registry.yarnpkg.com/@aspida/axios/-/axios-1.7.1.tgz#e717ff358dc0cee736e2a31bace251ee0b78b3e2"
   integrity sha512-2TNjvPAVhMAoe7YgfZawza0P0U4qMGLJdjW5H3BAIRv1B/TU929x2AO+ZrYroNZhI1wccDahVthuFHRgH8xTxw==
@@ -11662,7 +11662,7 @@ react-router@6.0.2, react-router@^6.0.0, react-router@^6.0.0-beta.8:
   dependencies:
     history "^5.1.0"
 
-react-select@^5.2.1:
+react-select@5.2.1:
   version "5.2.1"
   resolved "https://registry.yarnpkg.com/react-select/-/react-select-5.2.1.tgz#416c25c6b79b94687702374e019c4f2ed9d159d6"
   integrity sha512-OOyNzfKrhOcw/BlembyGWgdlJ2ObZRaqmQppPFut1RptJO423j+Y+JIsmxkvsZ4D/3CpOmwIlCvWbbAWEdh12A==
