@@ -11,9 +11,11 @@
     "test:coverage": "CI=1 yarn test:jest --coverage",
     "precommit": "lint-staged",
     "storybook": "start-storybook -p 6006 -s ./public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "generate:api-client": "rm -r src/api | npx openapi2aspida"
   },
   "dependencies": {
+    "@aspida/axios": "^1.7.1",
     "@headlessui/react": "1.4.2",
     "@heroicons/react": "1.0.5",
     "@hookform/resolvers": "2.8.5",
@@ -29,6 +31,7 @@
     "react-error-boundary": "3.1.4",
     "react-hook-form": "7.22.0",
     "react-query": "3.34.2",
+    "react-select": "^5.2.1",
     "use-immer": "0.6.0",
     "zod": "3.11.6"
   },

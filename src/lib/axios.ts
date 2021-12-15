@@ -1,4 +1,4 @@
-import Axios, { AxiosRequestConfig } from 'axios'
+import Axios, { AxiosRequestConfig, AxiosError } from 'axios'
 
 import { API_URL } from '@/config'
 // import { useNotificationStore } from '@/stores/notifications'
@@ -24,14 +24,14 @@ axios.interceptors.response.use(
   (response) => {
     return response.data
   },
-  (error) => {
+  (error: AxiosError) => {
     // const message = error.response?.data?.message || error.message
     // useNotificationStore.getState().addNotification({
     //   type: 'error',
     //   title: 'Error',
     //   message,
     // })
-
+    // throw error
     return Promise.reject(error)
   }
 )
