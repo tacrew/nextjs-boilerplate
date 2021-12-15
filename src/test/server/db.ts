@@ -1,4 +1,4 @@
-import { factory, primaryKey } from '@mswjs/data'
+import { factory, primaryKey, manyOf, oneOf } from '@mswjs/data'
 
 const models = {
   user: {
@@ -16,6 +16,22 @@ const models = {
     userId: String,
     createdAt: Number,
     updatedAt: Number,
+  },
+  category: {
+    id: primaryKey(Number),
+    name: String,
+  },
+  tag: {
+    id: primaryKey(Number),
+    name: String,
+  },
+  pet: {
+    id: primaryKey(Number),
+    category: oneOf('category'),
+    name: String,
+    photoUrls: Array,
+    tags: manyOf('tag'),
+    status: String,
   },
 }
 
