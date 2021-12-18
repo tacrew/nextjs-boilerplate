@@ -1761,16 +1761,17 @@
     "@types/set-cookie-parser" "^2.4.0"
     set-cookie-parser "^2.4.6"
 
-"@mswjs/data@0.8.3":
-  version "0.8.3"
-  resolved "https://registry.yarnpkg.com/@mswjs/data/-/data-0.8.3.tgz#f15122fc745f2f183b16a79cfa4d4182e3a1149f"
-  integrity sha512-j3AwA8elKi2g1G/o4MTQoeLqeH0n9dV1H5ilSg5KqXxG0UGDOqoxuF9aJS/NE203+pyPA+uLQw4FCN2j0erdBw==
+"@mswjs/data@0.8.4":
+  version "0.8.4"
+  resolved "https://registry.yarnpkg.com/@mswjs/data/-/data-0.8.4.tgz#1bb3b4fcf7459d0a733813af9bc826d3df631167"
+  integrity sha512-xim4YuYtxNyltqwRr5yirdnHTOhiwGKQmDxmOoNdh+oH4tUoJ2vM29UhpP1uWjWbSRWZiHADxPBjYNfoSI8NRQ==
   dependencies:
     "@types/lodash" "^4.14.172"
     "@types/md5" "^2.3.0"
     "@types/pluralize" "^0.0.29"
     "@types/uuid" "^8.3.0"
     date-fns "^2.21.1"
+    debug "^4.3.1"
     graphql "^15.5.0"
     lodash "^4.17.21"
     md5 "^2.3.0"
